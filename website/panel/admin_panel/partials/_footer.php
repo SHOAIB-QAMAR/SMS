@@ -1,9 +1,9 @@
 
 
     <script src="../assets/js/logout.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script>
+
     
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
     
     <script src="script.js"></script>
     <script src="../js/oranbyte-google-translator.js"></script>

@@ -11,7 +11,7 @@ function logout() {
                 var data = JSON.parse(xhr.responseText);
 
                 if (data.status === 'success') {
-                    window.location.href = '../../anshi.php';
+                    window.location.href = '../../auth/login.php';
                     return;
                 } else {
                     console.error('Logout failed:', data.message);

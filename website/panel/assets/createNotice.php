@@ -2,26 +2,25 @@
 include('config.php');
 session_start();
 
-
-
 $allowedFileSize = 200 * 1024 * 1024;
 $response = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $title =  mysqli_real_escape_string($conn, $_POST["title"]);
+    $title = mysqli_real_escape_string($conn, $_POST["title"]);
     $body = "";
     $file = "";
     $importance = $_POST['disks'];
     $senderId = $_SESSION['uid'];
 
     if (isset($_POST['body'])) {
-        $body = mysqli_real_escape_string($conn, $_POST["body"]);;
+        $body = mysqli_real_escape_string($conn, $_POST["body"]);
+        ;
     }
 
     if (isset($_FILES["file"]) && $_FILES["file"]["error"] == 0) {
 
-    
+
         $fileSize = $_FILES['file']['size'];
 
         if ($fileSize > $allowedFileSize) {
@@ -51,13 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($fileSize > $allowedFileSize) {
 
     } else {
-       
-        // Use prepared statement to insert notice
-        $query = "INSERT INTO `notice` (`s_no`, `sender_id`, `editor_id`, `title`, `body`,  `importance`,`file`, `timestamp`) VALUES (NULL, ?, ?, ?, ?, ?, ?, current_timestamp())";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "ssssss", $senderId, $senderId, $title, $body, $importance, $file);
 
-     
+        // Use prepared statement to insert notice
+        $query = "INSERT INTO `notice` (`s_no`, `sender_id`, `editor_id`, `title`, `body`, `importance`, `file`, `role`, `class`, `timestamp`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp())";
+        $stmt = mysqli_prepare($conn, $query);
+        $default_val = 'all';
+        mysqli_stmt_bind_param($stmt, "ssssssss", $senderId, $senderId, $title, $body, $importance, $file, $default_val, $default_val);
+
+
 
         if (mysqli_stmt_execute($stmt)) {
             $response = "success";

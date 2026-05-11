@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $lname = $row["lname"];
                 $tid = $row['id'];
                 $image = '../studentUploads/'.$row['image'];
-                $image = file_exists($image) ? $image : "../images/user.png";
+                $image = (!empty($row['image']) && file_exists($image) && !is_dir($image)) ? $image : "../images/user.png";
 
                 $resultOutput[$count - 1] = "<tr>
                <td>&nbsp;&nbsp;".$count.".&nbsp;&nbsp;</td>

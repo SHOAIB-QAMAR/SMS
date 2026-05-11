@@ -32,44 +32,39 @@ if (isset($_POST['exam_id'])) {
         $formattedDate = date("d-m-Y", strtotime($dateDB));
 
         $tableHeader = '
-     <table style="padding: 10px;margin: 10px;">
-                <tr>
-                    <th>'. $examRow['exam_title'] . '</th>
-                </tr>
-            </table>
-            
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Subject</th>
-                <th>Obtain Marks</th>
-                <th>Total Marks</th>
-                <th>Grade</th>
-            </tr>
-        </thead>
-        <tbody id="geeks">';
-
+            <div class="p-3">
+                <h5 class="fw-bold mb-3 text-primary"><i class="bx bx-receipt me-2"></i>'. $examRow['exam_title'] . '</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center" style="width: 50px;">#</th>
+                                <th>Subject</th>
+                                <th class="text-center">Obtained</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
 
         $counter = 1;
         while ($row = mysqli_fetch_assoc($result)) {
             $mark = $row['marks'];
-            $status = ((int)$mark >= (int)$examRow['passing_marks']) ? 
-                "<td style='color:green;text-align:center;'>Pass</td>" : 
-                "<td style='color:red;text-align:center;'>Fail</td>";
+            $statusBadge = ((int)$mark >= (int)$examRow['passing_marks']) ? 
+                '<span class="badge bg-success-subtle text-success border border-success-subtle px-3">Pass</span>' : 
+                '<span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3">Fail</span>';
 
             $body .= "<tr>
-                <td> <strong>".$counter."</strong></td>
+                <td class='text-center fw-bold'>".$counter."</td>
                 <td>" . $row["subject"] . "</td>
-                <td style='text-align:center;'>" . $mark . "</td>
-                <td style='text-align:center;'>" . $examRow["total_marks"] . "</td>
-                " . $status . "
+                <td class='text-center fw-bold'>" . $mark . "</td>
+                <td class='text-center text-secondary'>" . $examRow["total_marks"] . "</td>
+                <td class='text-center'>" . $statusBadge . "</td>
             </tr>";
             $counter++;
         }
 
-
-        $tableFooter = "</tbody></table>";
+        $tableFooter = "</tbody></table></div></div>";
         $response['data'] = $tableHeader . $body . $tableFooter;
 
         $response['status'] = "success";

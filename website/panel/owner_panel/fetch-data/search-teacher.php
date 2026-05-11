@@ -1,27 +1,22 @@
 <?php
- include("../../assets/config.php");
-
-// Assuming you've already sanitized the search term
+include("../../assets/config.php");
 $search = $_POST['search'];
-
-// Using prepared statement to prevent SQL injection
-$sql = "SELECT * FROM teachers WHERE fname LIKE ? OR lname LIKE ? OR gender LIKE ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $searchPattern, $searchPattern, $searchPattern);
-$searchPattern = "%{$search}%";
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+$sql = "select * from teachers where fname like '%$search%' or lname like '%$search%' or id like '%$search%'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>
-            <th scope='row'>" . $row['s_no'] . "</th>
-            <td>" . $row['fname'] . " " . $row['lname'] . "</td>
-            <td>" . $row['gender'] . "</td>
-            <td><a href='modal-teacher.php?id=". $row['id'] ."'><button id='view-more' data-id='".$row['id']."' style='height: 35px; width: 100px; background-color: skyblue; color: white; border: none; border-radius: 8px; text-decoration: none;'>View More</button>
-
-          </a></td>
-        </tr>";
+                <th scope='row'>" . $row['s_no'] . "</th>
+                <td>" . $row['fname'] . "  " . $row['lname'] . "</td>
+                <td>Teacher</td>
+                <td class='text-center'>
+                    <a href='modal-teacher.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>
+                        <i class='bx bx-show me-1'></i> View More
+                    </a>
+                </td>
+              </tr>";
     }
+} else {
+    echo "<tr><td colspan='4' class='text-center'>No Records Found</td></tr>";
 }
 ?>

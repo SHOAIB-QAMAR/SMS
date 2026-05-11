@@ -135,9 +135,9 @@ function fetchTimetableData() {
         Friday = data['data']['fri'] || Friday;
         Saturday = data['data']['sat'] || Saturday;
 
-        // Call setData with the global 'day' variable from app.js
+        // Call setData with the global 'currentTimetableDay' variable from app.js
         if (typeof setData === 'function') {
-            setData(day);
+            setData(window.currentTimetableDay);
         }
     })
     .catch(error => {

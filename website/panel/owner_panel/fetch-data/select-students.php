@@ -1,26 +1,26 @@
 <?php
- include("../../assets/config.php");
-$class = $_POST['select'];
-if($class!=""){
-    $sql = "SELECT * FROM students WHERE class='" . $class . "'";
+include("../../assets/config.php");
+$select = $_POST['select'];
+if ($select == "") {
+    $sql = "select * from students";
+} else {
+    $sql = "select * from students where class='$select'";
 }
-else{
-    $sql = "SELECT * FROM students";
-}
-
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>
-              <th scope='row'>" . $row['s_no'] . "</th>
-              <td>" . $row['fname'] . "  " . $row['lname'] . "</td>
-              <td>" . $row['class'] . " " . $row['section'] . "</td>
-              <td>
-                  <a href='modal-student.php?id=" . $row['id'] . "'>
-                      <button id='view-more' data-id='" . $row['id'] . "' style='height: 35px; width: 100px; background-color: skyblue; color: white; border: none; border-radius: 8px; text-decoration: none;'>View More</button>
-                  </a>
-              </td>
+                <th scope='row'>" . $row['s_no'] . "</th>
+                <td>" . $row['fname'] . "  " . $row['lname'] . "</td>
+                <td>" . $row['class'] . " " . $row['section'] . "</td>
+                <td class='text-center'>
+                    <a href='modal-student.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>
+                        <i class='bx bx-show me-1'></i> View More
+                    </a>
+                </td>
               </tr>";
     }
+} else {
+    echo "<tr><td colspan='4' class='text-center'>No Records Found for this Class</td></tr>";
 }
 ?>

@@ -36,34 +36,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             mysqli_stmt_execute($stmt2);
             $result2 = mysqli_stmt_get_result($stmt2);
 
-            if($result){
-                $row2 = mysqli_fetch_assoc($result2);
+            if($result2 && $row2 = mysqli_fetch_assoc($result2)){
              
 
                 $response['status'] = "success";
                 $response['id'] = $uid;
                 $response['role'] = $role;
                 
-                $image = "../images/user.png";
-                if($role == "admin"){
-                    $image = "../adminUploads/" . $row2['image'];
-                }
-                else if($role == "teacher"){
-                    $image = "../teacherUploads/" . $row2['image'];
-                }
+                $imageDir = ($role == "admin") ? "adminUploads" : "teacherUploads";
+                $imagePath = ".." . DIRECTORY_SEPARATOR . $imageDir . DIRECTORY_SEPARATOR . $row2['image'];
 
-               
-                $response['image'] = file_exists($image) ? $image : "../images/user.png" ;
+                $response['image'] = (!empty($row2['image']) && file_exists($imagePath) && !is_dir($imagePath)) ? $imagePath : "../images/user.png";
 
-                $response['fname'] = ucfirst(strtolower($row2['fname']));
-                $response['lname'] = ucfirst(strtolower($row2['lname']));
-                $response['dob'] = $row2['dob'];
+                $response['fname'] = ucfirst(strtolower($row2['fname'] ?? ''));
+                $response['lname'] = ucfirst(strtolower($row2['lname'] ?? ''));
+                $response['dob'] = $row2['dob'] ?? 'N/A';
                 $response['email'] = $email;
-                $response['phone'] =  $row2['phone'];
-                $response['class'] = $row2['class'];
-                $response['section'] = $row2['section'];
-                $response['gender'] =  $row2['gender'];
-                $response['address'] =  $row2['address'];
+                $response['phone'] =  $row2['phone'] ?? 'N/A';
+                $response['class'] = $row2['class'] ?? 'N/A';
+                $response['section'] = $row2['section'] ?? 'N/A';
+                $response['gender'] =  $row2['gender'] ?? 'N/A';
+                $response['address'] =  $row2['address'] ?? 'N/A';
 
                
             }else{

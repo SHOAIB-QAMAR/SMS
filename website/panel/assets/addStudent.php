@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST["gender"];
     $class = $_POST["class"];
     $section = $_POST["section"];
-    $imageName = "1701517055user.png";
+    $imageName = "user.png";
     $allowedExtensions = ['png', 'jpeg', 'jpg'];
 
     $phone = $_POST["phone"];

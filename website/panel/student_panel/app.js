@@ -1,156 +1,141 @@
 
-const sideMenu = document.querySelector("aside");
-const profileBtn = document.querySelector("#profile-btn");
-const themeToggler = document.querySelector(".theme-toggler");
-const nextDay = document.getElementById('nextDay');
-const prevDay = document.getElementById('prevDay');
+// Scope-protected dashboard logic
+(function() {
+    const dashboardSideBar = document.querySelector(".sidebar");
+    const sideBarToggleBtn = document.querySelector(".SidebarOpener");
+    const themeToggleEl = document.querySelector(".theme-toggler");
 
-profileBtn.onclick = function () {
-  sideMenu.classList.toggle('active');
-}
-window.onscroll = () => {
-  sideMenu.classList.remove('active');
-  if (window.scrollY > 0) { document.querySelector('header').classList.add('active'); }
-  else { document.querySelector('header').classList.remove('active'); }
-}
-
-themeToggler.onclick = function () {
-  document.body.classList.toggle('dark-theme');
-  themeToggler.querySelector('span:nth-child(1)').classList.toggle('active')
-  themeToggler.querySelector('span:nth-child(2)').classList.toggle('active')
-}
-
-let setData = (day) => {
-  document.querySelector('table tbody').innerHTML = ' '; //To clear out previous table data;  
-  let daylist = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  document.querySelector('.timetable div h2').innerHTML = daylist[day];
-  switch (day) {
-    case (0): day = Sunday; break;
-    case (1): day = Monday; break;
-    case (2): day = Tuesday; break;
-    case (3): day = Wednesday; break;
-    case (4): day = Thursday; break;
-    case (5): day = Friday; break;
-    case (6): day = Saturday; break;
-  }
-  var count = 1;
-  day.forEach(sub => {
-
-    var tr = document.createElement('tr');
-
-    var trContent = `
-                            <td>${sub.start_time}</td>
-                             <td>${sub.end_time}</td>
-                             <td>${sub.subject}</td>
-                            
-                        `;
-
-    tr.innerHTML = trContent;
-    document.querySelector('table tbody').appendChild(tr)
-
-    if (count == 5) {
-      var tr = document.createElement('tr');
-      var trContent = `
-                            <td></td>
-                            <td>LUNCH</td>
-                             <td></td>
-                            
-                        `;
-      tr.innerHTML = trContent;
-      document.querySelector('table tbody').appendChild(tr)
+    if (sideBarToggleBtn && dashboardSideBar) {
+        sideBarToggleBtn.onclick = function () {
+            dashboardSideBar.classList.toggle('close');
+        }
     }
-    count++;
 
-  });
-}
-
-let now = new Date();
-let today = now.getDay(); // Will return the present day in numerical value; 
-let day = today; //To prevent the today value from changing;
-
-function timeTableAll() {
-  document.getElementById('timetable').classList.toggle('active');
-  setData(today);
-  document.querySelector('.timetable div h2').innerHTML = "Today's Timetable";
-}
-nextDay.onclick = function () {
-  day <= 5 ? day++ : day = 0;  // If else one liner
-  setData(day);
-}
-prevDay.onclick = function () {
-  day >= 1 ? day-- : day = 6;
-  setData(day);
-}
-
-//To set the data in the table on loading window.
-document.querySelector('.timetable div h2').innerHTML = "Today's Timetable"; //To prevent overwriting the heading on loading;
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-
-
-function handleShowAllSubjectMarks(examId) {
-
-  document.getElementById("allResultList").classList.add("hide");
-  document.querySelector(".marks-table-search-box").classList.add("hide");
-
-  fetch("../assets/fetchSubjectiveResults.php", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: "exam_id=" + encodeURIComponent(examId + ""),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-
-      if(data['status'] === "success"){
-        document.getElementById("subjectiveResultTable").innerHTML = data ['data'];
-      }else{
-        document.getElementById("subjectiveResultTable").innerHTML="<h2 style='margin-top : 2rem;width: 100%; text-align: center;'>❌ Something went wrong!</h2>";
-      }
-      
-
-    })
-    .catch(error => {
-      console.error("Error" + error);
+    window.addEventListener('scroll', () => {
+        if (dashboardSideBar) dashboardSideBar.classList.remove('active');
+        if (window.scrollY > 0) { document.querySelector('header')?.classList.add('active'); }
+        else { document.querySelector('header')?.classList.remove('active'); }
     });
 
+    if (themeToggleEl) {
+        themeToggleEl.onclick = function () {
+            document.body.classList.toggle('dark');
+            themeToggleEl.querySelector('i:nth-child(1)')?.classList.toggle('active')
+            themeToggleEl.querySelector('i:nth-child(2)')?.classList.toggle('active')
+            
+            const isDark = document.body.classList.contains('dark');
+            fetch('../assets/updateTheme.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'theme=' + (isDark ? 'dark' : 'light')
+            });
+        }
+    }
+})();
 
+// Global functions for cross-script access
+window.setData = (day) => {
+    const tableBody = document.querySelector('#timetable_table tbody');
+    const dayDisplay = document.getElementById('current_day_display');
+    
+    if (!tableBody) return;
+    
+    tableBody.innerHTML = ''; 
+    let daylist = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    if (dayDisplay) dayDisplay.innerHTML = daylist[day];
+
+    let currentDayData;
+    switch (day) {
+        case (0): currentDayData = (typeof Sunday !== 'undefined') ? Sunday : []; break;
+        case (1): currentDayData = (typeof Monday !== 'undefined') ? Monday : []; break;
+        case (2): currentDayData = (typeof Tuesday !== 'undefined') ? Tuesday : []; break;
+        case (3): currentDayData = (typeof Wednesday !== 'undefined') ? Wednesday : []; break;
+        case (4): currentDayData = (typeof Thursday !== 'undefined') ? Thursday : []; break;
+        case (5): currentDayData = (typeof Friday !== 'undefined') ? Friday : []; break;
+        case (6): currentDayData = (typeof Saturday !== 'undefined') ? Saturday : []; break;
+        default: currentDayData = [];
+    }
+
+    if (!currentDayData || currentDayData.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4">No classes scheduled</td></tr>';
+        return;
+    }
+
+    var count = 1;
+    currentDayData.forEach(sub => {
+        const subjectName = (sub.subject && sub.subject.trim() !== "") ? sub.subject.trim() : "--";
+
+        var tr = document.createElement('tr');
+        var trContent = `
+            <td>${sub.start_time || '--:--'}</td>
+            <td>${sub.end_time || '--:--'}</td>
+            <td>${subjectName}</td>
+        `;
+        tr.innerHTML = trContent;
+        tableBody.appendChild(tr);
+
+        if (count == 5) {
+            var lunchTr = document.createElement('tr');
+            lunchTr.innerHTML = `
+                <td colspan="3" class="text-center fw-bold bg-light text-success" style="letter-spacing: 10px; font-size: 0.8rem; background-color: var(--light-primary) !important;">LUNCH BREAK</td>
+            `;
+            tableBody.appendChild(lunchTr);
+        }
+        count++;
+    });
 }
 
-function hideSubjectiveListShowFullList(){
-  document.getElementById("subjectiveResultTable").value = "";
-  document.getElementById("allResultList").classList.remove("hide");
-  document.querySelector(".marks-table-search-box").classList.remove("hide");
+// Global day tracking
+window.currentTimetableDay = new Date().getDay();
+
+const nextDayBtn = document.getElementById('nextDay');
+const prevDayBtn = document.getElementById('prevDay');
+
+if (nextDayBtn) {
+    nextDayBtn.onclick = function () {
+        window.currentTimetableDay <= 5 ? window.currentTimetableDay++ : window.currentTimetableDay = 0;
+        setData(window.currentTimetableDay);
+    }
 }
 
-(document.querySelectorAll("no-submit")).forEach(element => {
-  element.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  })
+if (prevDayBtn) {
+    prevDayBtn.onclick = function () {
+        window.currentTimetableDay >= 1 ? window.currentTimetableDay-- : window.currentTimetableDay = 6;
+        setData(window.currentTimetableDay);
+    }
+}
+
+// Search functionality
+function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    if (!input) return;
+    filter = input.value.toUpperCase();
+    table = document.getElementById("timetable_table");
+    if (!table) return;
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2]; 
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+// Initial state
+document.addEventListener('DOMContentLoaded', () => {
+    const dayDisplay = document.getElementById('current_day_display');
+    if (dayDisplay) {
+        dayDisplay.innerHTML = "Today's Schedule";
+    }
+
+    if (typeof fetchTimetableData === 'function') {
+        fetchTimetableData();
+    }
 });
-
-
-// Initialize timetable data
-fetchTimetableData();

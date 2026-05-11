@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $pathToFile = ".." . DIRECTORY_SEPARATOR . "studentUploads" . DIRECTORY_SEPARATOR . $row['image'];
 
-                if (!file_exists($pathToFile)) {
+                if (empty($row['image']) || !file_exists($pathToFile) || is_dir($pathToFile)) {
                     $pathToFile = "../images/user.png";
                 }
 

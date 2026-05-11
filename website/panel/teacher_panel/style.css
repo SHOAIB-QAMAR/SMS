@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
     --light: #ffffffd5;
-    --primary: #1976D2;
-    --light-primary: #CFE8FF;
-    /* --grey: #f0ececd5; */
-    /* --grey: #dee2e6c4; */
+    --primary: #1d7431;
+    --primary-dark: #145a24;
+    --light-primary: #d1e7dd;
+    --secondary: #2193b0;
+    --accent: #6dd5ed;
 
-    --grey: #e4e4e4fd;
+    --grey: #f0f2f5;
     --dark-grey: #AAAAAA;
     --dark: #363949;
     --danger: #D32F2F;
@@ -16,17 +17,20 @@
     --light-warning: #FFF2C6;
     --success: #388E3C;
     --light-success: #BBF7D0;
-    --light-text: #0066ff;
+    --light-text: #1d7431;
     --dark-text: rgb(71, 219, 230);
     --white: white;
-
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+    --transition: all 0.3s ease-in-out;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 
 .invisiable {
@@ -97,6 +101,8 @@ body.dark {
     --dark: #fbfbfb;
     --light-text: rgb(71, 219, 230);
     --white: #181a1e;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
@@ -153,7 +159,9 @@ body::-webkit-scrollbar {
     z-index: 200;
     overflow-x: hidden;
     scrollbar-width: none;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    border-right: 1px solid var(--grey);
+    box-shadow: var(--shadow-sm);
 }
 
 .sidebar.show {
@@ -166,7 +174,9 @@ body::-webkit-scrollbar {
     z-index: 200;
     overflow-x: hidden;
     scrollbar-width: none;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    border-right: 1px solid var(--grey);
+    box-shadow: var(--shadow-sm);
 }
 
 .sidebar::-webkit-scrollbar {
@@ -184,7 +194,8 @@ body::-webkit-scrollbar {
 .sidebar.close {
     width: 60px;
 }
-.wdp-hour-arrow-container{
+
+.wdp-hour-arrow-container {
     height: 30px;
 }
 
@@ -441,11 +452,12 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     border-radius: 48px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--dark);
     white-space: nowrap;
     overflow-x: hidden;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .sidebar.show .side-menu li a {
@@ -455,11 +467,12 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     border-radius: 48px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--dark);
     white-space: nowrap;
     overflow-x: hidden;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .sidebar .side-menu li.active a {
@@ -521,7 +534,9 @@ body::-webkit-scrollbar {
 
 .content nav {
     height: 56px;
-    background: var(--light);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 0 24px 0 0;
     display: flex;
     align-items: center;
@@ -530,6 +545,8 @@ body::-webkit-scrollbar {
     top: 0;
     left: 0;
     z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-sm);
 }
 
 .content nav ul li,
@@ -554,17 +571,6 @@ body::-webkit-scrollbar {
     padding-right: 4px;
     padding-left: 4px;
 
-}
-
-.content nav::before {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    bottom: -40px;
-    left: 0;
-    border-radius: 50%;
-    box-shadow: -20px -20px 0 var(--light);
 }
 
 .content nav a {
@@ -1166,7 +1172,8 @@ div._flex-container button {
 .remove-table-hover tr {
     cursor: default;
 }
-.remove_hover_table tbody tr{
+
+.remove_hover_table tbody tr {
     background-color: transparent !important;
 }
 
@@ -1257,9 +1264,6 @@ div._flex-container button {
     background-color: var(--primary);
 }
 
-.content main .tab-content .syllabus-table .upload-download .download .bx {
-    transform: rotateX(180deg);
-}
 
 /*CARD OF NOTICE*/
 
@@ -1443,11 +1447,18 @@ div._flex-container button {
 .content main .insights li {
     padding: 24px;
     background: var(--light);
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     display: flex;
     align-items: center;
     grid-gap: 24px;
     cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.content main .insights li:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
 .content main .insights li .bx {
@@ -1500,10 +1511,11 @@ div._flex-container button {
 }
 
 .content main .bottom-data>div {
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     background: var(--light);
     padding: 24px;
     overflow-x: auto;
+    box-shadow: var(--shadow-sm);
 }
 
 .content main .bottom-data .header {
@@ -1532,11 +1544,21 @@ div._flex-container button {
 .content main .bottom-data .orders .nav-link {
     color: var(--dark);
     background-color: var(--grey);
+    border-radius: 8px 8px 0 0;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.content main .bottom-data .orders .nav-link:hover {
+    color: var(--primary);
+    background-color: var(--light-primary);
 }
 
 .content main .bottom-data .orders .nav-link.active {
-    color: var(--success);
+    color: var(--primary);
     background-color: var(--light);
+    border-bottom: 3px solid var(--primary);
+    font-weight: 600;
 }
 
 .content main .bottom-data .orders .tab-content .pt-3 {
@@ -1559,7 +1581,14 @@ div._flex-container button {
 
 .content main .bottom-data .orders table td {
     padding: 16px 0;
+
 }
+
+.content main .bottom-data .orders table td input:enabled {
+    border: 1px dashed #2a4364a3;
+    background: var(--light);
+}
+
 
 .content main .bottom-data .orders table td.marks-input-container {
     padding: 16px 2px;
@@ -1573,7 +1602,13 @@ div._flex-container button {
 
 }
 
+.bus-root-gui.skiptranslate {
+    display: block;
+}
 
+#create-subject-form select {
+    width: 100% !important;
+}
 
 .content main .bottom-data .orders table td img {
     width: 36px;
@@ -1847,7 +1882,7 @@ div._flex-container button {
 }
 
 .modal-body input[type=date] {
-    
+
     max-width: 500px;
     color: var(--light-text);
     background-color: var(--grey);
@@ -2321,9 +2356,7 @@ td.tableData {
 .teacher-leave-insights .rejected-insight .side-icon {
     background-color: var(--light-danger);
 }
-#create-subject-form select{
-    width: 100% !important;
-}
+
 .teacher-leave-insights .total-staff-insight .side-icon .bx {
     color: var(--primary);
 }
@@ -2767,9 +2800,6 @@ td.tableData {
         display: none;
     }
 
-    .content main .tab-content .syllabus-table .upload-download .download .bx {
-        display: none;
-    }
 
     .content main .bottom-data .orders table tr td .status {
         width: 100px;
@@ -3038,4 +3068,110 @@ td.tableData {
         width: 100%;
     }
 
+}
+
+/* =============================================
+   BOOTSTRAP & THEME OVERRIDES
+   ============================================= */
+
+/* Override Bootstrap btn-primary to match green theme */
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-dark) !important;
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 4px 12px rgba(29, 116, 49, 0.3) !important;
+}
+
+.btn-success {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-danger {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-secondary {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Modal Styling — Green accent */
+.modal-content {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--grey);
+    background: linear-gradient(135deg, var(--light-primary), var(--light));
+    padding: 16px 24px;
+}
+
+.modal-header .modal-title {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--grey);
+    padding: 12px 24px;
+}
+
+/* Form focus states — green */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(29, 116, 49, 0.15) !important;
+}
+
+/* Sidebar collapsed — hide logo text */
+.sidebar.close .logo-text,
+.sidebar.close .logo-container>div:first-child span {
+    display: none;
+}
+
+.sidebar.close .logo-container {
+    /* Kept empty to avoid overriding fixed padding */
+}
+
+/* Table header accent */
+.content main .bottom-data .orders table th {
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+/* Scrollbar styling for light mode */
+body:not(.dark) ::-webkit-scrollbar {
+    width: 6px;
+}
+
+body:not(.dark) ::-webkit-scrollbar-track {
+    background: var(--grey);
+}
+
+body:not(.dark) ::-webkit-scrollbar-thumb {
+    background: var(--dark-grey);
+    border-radius: 3px;
+}
+
+/* Toast override */
+.toast-container .toast {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
 }

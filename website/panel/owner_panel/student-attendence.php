@@ -1,158 +1,89 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <title>ERP</title>
-    <link rel="stylesheet" href="../css/oranbyte-google-translator.css">
-    <script src="../js/oranbyte-google-translator.js"></script>
-    <style type="text/css">
-         .card{
+<?php include('partials/_header.php'); ?>
+
+<!-- Sidebar -->
+<?php include('partials/_sidebar.php'); ?>
+<input type="hidden" value="3" id="checkFileName">
+<!-- End of Sidebar -->
+
+<!-- Main Content -->
+<div class="content">
+    <!-- Navbar -->
+    <?php include("partials/_navbar.php"); ?>
+    <!-- End of Navbar -->
+
+    <main>
+        <div class="header">
+            <div class="left">
+                <h1>Student Attendance</h1>
+                <ul class="breadcrumb">
+                    <li><a href="student-list.php">Students</a></li>
+                    <li><i class='bx bx-chevron-right'></i></li>
+                    <li><a>Attendance Analysis</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <h3>Attendance Overview</h3>
+                </div>
                 
-                position: absolute;
-                margin-top: 5%;
-         }
-         .detail{
-         	height: auto;
-         	width: 100%;
-         	display: flex;
-         	justify-content: center;
-         	flex-direction: row;
+                <div class="p-4 d-flex justify-content-center">
+                    <div id="piechart" style="width: 100%; max-width: 600px; height: 400px;"></div>
+                </div>
+                
+                <div class="text-center pb-4">
+                    <a href="modal-student.php?id=<?php echo $_GET['id']; ?>" class="btn btn-outline-secondary">
+                        <i class='bx bx-arrow-back me-1'></i> Back to Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 
-         }
-         .card{
-         	width: 40%;
-         }
-         @media (max-width: 700px){
-         	.card{
-         		width: 80%;
-         	}
-         }
-         .attendence{
-           height: auto;
-           width: 100%;
-           margin-top: 5%;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           
-         }
-         #piechart{
-             display: flex;
-             flex-direction: column;
-             height: 500px;
-             width: 600px;
-         }
-         @media (max-width: 700px){
-             #piechart{
-                 width: 300px;
-                 height: 250px;
-             }
-         }
-    </style>
-</head>
-<body>
-	<div class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.php">SCHOOL MANAGEMENT</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="notices.php">Notice</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Fee Pay
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="make-payment.php">Make Payment</a></li>
-            <li><a class="dropdown-item" href="see-payment.php">See Payment</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="change-password.php">Change-Password</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
-        </li>
-      </ul>
-      <form class="d-flex align-items-center">
-            <div id="oranbyte-google-translator" class="me-2"
-              data-default-lang="en"
-              data-lang-root-style="code-flag"
-              data-lang-list-style="code-flag"
-              ></div>
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-    </div>
-    <?php
-    $id=$_GET['id'];
-    echo "<script>var id='{$id}';</script>";
+<?php 
+$id = $_GET['id']; 
+echo "<script>var studentId = '{$id}';</script>";
 ?>
-    <div class="attendence" id="val">
-    <div id="piechart"></div>
 
-    </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        fetch("fetch-data/fetch-attendence.php", {
+            method: 'POST',
+            body: JSON.stringify({id: studentId}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(() => drawChart(data.present, data.absent));
+            }
+        })
+        .catch(error => console.error("Error:", error));
 
-          fetch("fetch-data/fetch-attendence.php", {
-              method: 'POST',
-              body: JSON.stringify({id: id}),
-          })
-              .then(response => response.json())
-              .then(data => {
-                  console.log(data);
-                  console.log(data['present']);
-                   google.charts.load('current', {'packages':['corechart']});
-          google.charts.setOnLoadCallback(drawChart);
-                  var present=data['present'];
-                  var absent=data['absent'];
-                   function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-              ['Task', 'Hours per Day'],
-              ['Present',     present],
-              ['Absent',      absent]
+        function drawChart(present, absent) {
+            var chartData = google.visualization.arrayToDataTable([
+                ['Status', 'Days'],
+                ['Present', parseInt(present)],
+                ['Absent', parseInt(absent)]
             ]);
 
             var options = {
-              title: 'Student Attendence'
+                title: 'Monthly Attendance Statistics',
+                pieHole: 0.4,
+                colors: ['#1d7431', '#D32F2F'],
+                chartArea: { width: '100%', height: '80%' },
+                legend: { position: 'bottom' }
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(chartData, options);
+        }
+    });
+</script>
 
-            chart.draw(data, options);
-          }
-
-              })
-              .catch(error => {
-
-                  console.error("Error:", error);
-              });
-         
-
-         
-        </script>
-
-
-</body>
-</html>
+<?php include("partials/_footer.php"); ?>

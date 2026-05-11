@@ -11,7 +11,7 @@
         <ul>
           <li class="nav-item"><a href="./index.php">Home</a></li>
           <li class="nav-item"><a href="./about-us.php">About-us</a></li>
-          <li class="nav-item"><a href="./login.php" class="btn">Login</a></li>
+          <li class="nav-item"><a href="../auth/login.php" class="btn">Login</a></li>
           <li class="nav-item">
             <button class="toggle-btn">
               <i class="far fa-moon"></i>

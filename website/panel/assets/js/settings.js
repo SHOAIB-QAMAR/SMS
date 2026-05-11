@@ -29,9 +29,13 @@ function setProfileDetails() {
 
                 
     
-                    document.getElementById("navbar_profile_pic").innerHTML = ' <img  src="' + data['image'] + '" >';
-    
-                    document.getElementById("profileImageBox").innerHTML = '<img alt="Profile pic" src="' + data['image'] + '" class="rounded-circle img-responsive mt-2" width="128" height="128" id="profile-image-user">';
+                    if (document.getElementById("navbar_profile_pic")) {
+                        document.getElementById("navbar_profile_pic").innerHTML = ' <img  src="' + data['image'] + '" >';
+                    }
+
+                    if (document.getElementById("profileImageBox")) {
+                        document.getElementById("profileImageBox").innerHTML = '<img alt="Profile pic" src="' + data['image'] + '" class="rounded-circle img-responsive mt-2" width="128" height="128" id="profile-image-user">';
+                    }
     
                     document.getElementById("userDOB").innerHTML = data['dob'];
                     document.getElementById("teacher_id").innerHTML = data['id'];
@@ -45,15 +49,23 @@ function setProfileDetails() {
 
                   
     
-                    document.getElementById("navbar_profile_pic").innerHTML = ' <img  src="' + data['image'] + '" >';
-    
-                    document.getElementById("profileImageBox").innerHTML = '<img alt="Profile pic" src="' + data['image'] + '" class="rounded-circle img-responsive mt-2" width="128" height="128" id="profile-image-user">';
+                    if (document.getElementById("navbar_profile_pic")) {
+                        document.getElementById("navbar_profile_pic").innerHTML = ' <img  src="' + data['image'] + '" >';
+                    }
+
+                    if (document.getElementById("profileImageBox")) {
+                        document.getElementById("profileImageBox").innerHTML = '<img alt="Profile pic" src="' + data['image'] + '" class="rounded-circle img-responsive mt-2" width="128" height="128" id="profile-image-user">';
+                    }
     
                     document.getElementById("userDOB").innerHTML = data['dob'];
                     document.getElementById("teacher_id").innerHTML = data['id'];
                     document.getElementById("userEmail").innerHTML = data['email'];
-                    document.getElementById("userClass").innerHTML = data['class'];
-                    document.getElementById("userSection").innerHTML = data['section'];
+                    if (document.getElementById("userClass")) {
+                        document.getElementById("userClass").innerHTML = data['class'];
+                    }
+                    if (document.getElementById("userSection")) {
+                        document.getElementById("userSection").innerHTML = data['section'];
+                    }
                     document.getElementById("userPhone").innerHTML = data['phone'];
                     document.getElementById("userGender").innerHTML = data['gender'];
                     document.getElementById("userAddress").innerHTML = data['address'];

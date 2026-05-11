@@ -1,6 +1,7 @@
 <div class="sidebar">
-    <div class="logo-container d-flex align-items-center justify-content-center py-4">
-        <div class="SidebarOpener d-flex align-items-center justify-content-center rounded shadow-sm text-primary" style="width: 40px; height: 40px; background-color: var(--light-primary); cursor: pointer; transition: all 0.2s ease;">
+    <div class="logo-container py-3 px-3">
+        <div class="SidebarOpener d-flex align-items-center justify-content-center rounded shadow-sm text-success flex-shrink-0"
+            style="width: 35px; height: 35px; background-color: var(--light-success); cursor: pointer; transition: all 0.2s ease;">
             <i class='bx bx-menu fs-4'></i>
         </div>
     </div>
@@ -18,17 +19,7 @@
         <li><a href="marks.php"><i class='bx bx-paste'></i>Marks</a></li>
         <li><a href="buses.php"><i class='bx bxs-bus'></i>Bus Service</a></li>
         <li><a href="upload_courses.php"><i class='bx bx-book-add'></i>Courses</a></li>
-        <li><a href="upload_excel.php"><i class='bx bx-file-import'></i>Excel Import</a></li>
-        <li><a href="settings.php"><i class='bx bx-cog'></i>Settings</a></li>
-        <li><a href="dashboard.php#website-management"><i class='bx bx-world'></i>Website Settings</a></li>
-    </ul>
-    <ul class="side-menu">
-        <li>
-            <a class="logout" data-bs-toggle="modal" data-bs-target="#logout-modal">
-                <i class='bx bx-log-out-circle'></i>
-                Logout
-            </a>
-        </li>
+        <!-- <li><a href="upload_excel.php"><i class='bx bx-file-import'></i>Excel Import</a></li> -->
     </ul>
 </div>
 

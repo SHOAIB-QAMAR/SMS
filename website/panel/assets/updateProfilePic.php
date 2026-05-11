@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $deleted = false;
                     $newName = $id . time();
         
-                    if (strtolower($row['image']) === strtolower("1701517055user.png")) {
+                    if (strtolower($row['image']) === strtolower("user.png")) {
                         $deleted = true;
                     } else {
                         // $newName = pathinfo($row['image'], PATHINFO_FILENAME);

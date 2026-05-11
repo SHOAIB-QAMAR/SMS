@@ -21,8 +21,8 @@ if (isset($_POST['id']) && isset($_SESSION['uid'])) {
         while ($row = mysqli_fetch_assoc($result)) {
             $data['status'] = "success";
             $data["name"] = ucfirst(strtolower($row["fname"])) . " " . strtolower($row['lname']);
-            $row['image'] = "../studentUploads/".$row['image'];
-            $data["image"] = file_exists($row['image']) ? $row['image'] : "../images/user.png";
+            $row['image_path'] = "../studentUploads/".$row['image'];
+            $data["image"] = (!empty($row['image']) && file_exists($row['image_path']) && !is_dir($row['image_path'])) ? $row['image_path'] : "../images/user.png";
 
             $dobString = $row["dob"];
             $timestamp = strtotime($dobString);

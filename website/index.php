@@ -1,4 +1,4 @@
-<?php include("db.php"); ?>
+<?php include("database/db.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,10 +45,8 @@
           <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           <li class="nav-item ms-lg-3"><a href="view_course.php" class="nav-link">Courses</a></li>
-          <li class="nav-item ms-lg-2"><a href="anshi.php" class="btn btn-outline-success px-4 rounded-pill">Login</a>
+          <li class="nav-item ms-lg-2"><a href="auth/login.php" class="btn btn-outline-success px-4 rounded-pill">Login</a>
           </li>
-          <li class="nav-item ms-lg-2"><a href="signup.php"
-              class="btn btn-primary px-4 rounded-pill shadow-sm">Signup</a></li>
         </ul>
       </div>
     </div>
@@ -65,16 +63,6 @@
   ?>
   <section class="hero-section">
     <img src="<?= htmlspecialchars($bannerSrc) ?>" class="hero-img" alt="Main Banner">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <h1 class="display-3">Nurturing Excellence, Fostering Growth</h1>
-      <p class="lead">Providing a strong foundation for the leaders of tomorrow through holistic education and moral
-        values.</p>
-      <div class="d-flex justify-content-center gap-3">
-        <a href="#contact" class="btn btn-light btn-lg px-5 rounded-pill fw-bold">Enroll Now</a>
-        <a href="#about" class="btn btn-outline-light btn-lg px-5 rounded-pill">Learn More</a>
-      </div>
-    </div>
   </section>
 
   <!-- Welcome / About Section -->
@@ -145,9 +133,6 @@
           <div class="col-lg-4 col-md-6">
             <div class="gallery-item shadow-sm">
               <img src="<?= $images[$i] ?>" alt="Gallery Image <?= $i ?>">
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
             </div>
           </div>
         <?php endfor; ?>
@@ -204,7 +189,8 @@
       <div class="row g-5">
         <div class="col-lg-7 col-md-6">
           <div class="footer-brand mb-4">
-            <img src="assets/images/school1 (1).jpeg" alt="Logo" width="50" class="rounded-circle me-2 border border-2 border-white">
+            <img src="assets/images/school1 (1).jpeg" alt="Logo" width="50"
+              class="rounded-circle me-2 border border-2 border-white">
             <span class="fw-bold text-white fs-4">Grassroots Public School</span>
           </div>
           <p class="text-white-50 mb-4 pe-lg-5">

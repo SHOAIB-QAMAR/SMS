@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(!isset($_SESSION['uid'])){
-        header("Location: ../../anshi.php");
+        header("Location: ../../auth/login.php");
         exit();
   }
 

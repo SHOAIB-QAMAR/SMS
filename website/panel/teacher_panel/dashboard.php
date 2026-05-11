@@ -63,7 +63,6 @@
         <!-- Insights -->
         <ul class="insights">
             <li>
-                <!-- <i class='bx bx-calendar-check'></i> -->
                 <i class='bx bxs-user'></i>
                 <span class="info">
                     <h3 class="text-center" id="teacherCount">_ _ _</h3>
@@ -73,21 +72,21 @@
             <li onclick="showStudentList()">
                 <i class='bx bxs-group'></i>
                 <span class="info">
-                    <h3  class="text-center" id="studentCount">_ _ _</h3>
+                    <h3 class="text-center" id="studentCount">_ _ _</h3>
                     <p>Students</p>
                 </span>
             </li>
             <li onclick="showNotesList()">
                 <i class='bx bx-book'></i>
                 <span class="info">
-                    <h3 class="text-center"  id="classCount">_ _ _</h3>
+                    <h3 class="text-center" id="classCount">_ _ _</h3>
                     <p>Notes</p>
                 </span>
             </li>
             <li onclick="showNoticeList()">
                 <i class='bx bxs-bookmark'></i>
                 <span class="info">
-                    <h3 class="text-center"  id="noticeCount">_ _ _</h3>
+                    <h3 class="text-center" id="noticeCount">_ _ _</h3>
                     <p>Notices</p>
                 </span>
             </li>
@@ -100,7 +99,8 @@
                     <i class='bx bx-receipt'></i>
                     <h3 id="text-heading">Latest Notices</h3>
                     <i class='bx bx-filter'></i>
-                    <a href="noticeboard.php" > <i class='bx bx-plus icon-hover-circle' id="plusIconNotification" style="font-size: 30px;"></i></a>
+                    <a href="noticeboard.php"> <i class='bx bx-plus icon-hover-circle' id="plusIconNotification"
+                            style="font-size: 30px;"></i></a>
                 </div>
 
 
@@ -114,30 +114,7 @@
                         </tr>
                     </thead>
                     <tbody id="noticeTableBody">
-                    <tr>
-                            <td class="user">
-                                <img src="../images/green.png">
-                                <p>how do they do it</p>
-                            </td>
-                            <td>14-08-2023</td>
-                            <td><span>Arvind verma</span></td>
-                        </tr>
-                        <tr>
-                            <td class="user">
-                                <img src="../images/red.png">
-                                <p>Yogesh yadav</p>
-                            </td>
-                            <td>14-08-2023</td>
-                            <td><span class="status complain">Complain</span></td>
-                        </tr>
-                        <tr>
-                            <td class="user">
-                                <img src="../images/yellow.png">
-                                <p>Shubham kumar</p>
-                            </td>
-                            <td>14-08-2023</td>
-                            <td><span class="status notice">Event</span></td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

@@ -1,64 +1,65 @@
+<?php include('partials/_header.php'); ?>
 
-<?php
-include("../assets/noSessionRedirect.php"); 
-include('./fetch-data/verfyRoleRedirect.php');
-include("../assets/config.php");
+<!-- Sidebar -->
+<?php include('partials/_sidebar.php'); ?>
+<input type="hidden" value="4" id="checkFileName">
+<!-- End of Sidebar -->
 
-error_reporting(0);
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <?php include('includes/header.php'); ?>
-    <title>Teacher List - EduCore</title>
-</head>
-<body>
-    <?php include('includes/navbar.php'); ?>
-    <div class="teacher-list">
-      <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Sr_NO</th>
-      <th scope="col">NAME</th>
-      <th scope="col">Gender</th>
-      <th scope="col">MORE DETAILS</th>
-    </tr>
-  </thead>
-  <tbody id="tb">
-    
-  </tbody>
-</table>
-    </div>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        function load_table(){$.ajax({
-          url: "fetch-data/fetch-teachers.php",
-          method: "POST",
-          success: function(data){
-             $("#tb").html(data);
-          }
+<!-- Main Content -->
+<div class="content">
+    <!-- Navbar -->
+    <?php include("partials/_navbar.php"); ?>
+    <!-- End of Navbar -->
+
+    <main>
+        <div class="header">
+            <div class="left">
+                <h1>Teacher List</h1>
+                <ul class="breadcrumb">
+                    <li><a>Directory of all faculty members</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bxs-user-detail'></i>
+                    <h3>Teachers</h3>
+                </div>
+                
+                <div class="table-responsive p-3">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sr_NO</th>
+                                <th>NAME</th>
+                                <th>Gender</th>
+                                <th class="text-center">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tb">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    function load_table(){
+        $.ajax({
+            url: "fetch-data/fetch-teachers.php",
+            method: "POST",
+            success: function(data){
+                $("#tb").html(data);
+            }
         });
-      }
-      load_table();
- 
-        $("#main-search").on("keyup",function(){
-          var search=$(this).val();
-          $.ajax({
-              url: "fetch-data/search-teacher.php",
-              type: "POST",
-              data: {search: search},
-              success: function(data){
-                  $("#tb").html(data);
-              }
-        });
-        });
-        
-      
-      });
+    }
+    load_table();
+});
+</script>
 
-     
-
-
-    </script>
-  </body>
-  </html>
+<?php include("partials/_footer.php"); ?>

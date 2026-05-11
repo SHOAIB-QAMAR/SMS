@@ -17,7 +17,9 @@ if(isset($_SESSION['uid'])){
         $query = "UPDATE `users` SET `theme` = ? WHERE `users`.`id` = ?";
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "ss", $theme, $uid);
-        mysqli_stmt_execute($stmt);
+        if(mysqli_stmt_execute($stmt)) {
+            $_SESSION['theme'] = $theme;
+        }
         mysqli_stmt_close($stmt);
     }
 }

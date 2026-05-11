@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-include("db.php");
+include("database/db.php");
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

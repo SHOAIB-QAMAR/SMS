@@ -10,8 +10,8 @@
     <label for="theme-toggle" class="theme-toggle" onload="checkAndChangeTheme()"></label>
 
 
-    <div class="dropdown dropdown-center">
-      <a class=" menu" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown">
+      <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class='bx bx-dots-vertical-rounded icon-hover-circle'></i>
       </a>
 

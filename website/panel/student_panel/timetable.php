@@ -1,83 +1,53 @@
-<?php include("../assets/noSessionRedirect.php"); ?>
-<?php include("./verifyRoleRedirect.php"); ?>
+<?php include('partials/_header.php') ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- Sidebar -->
+<?php include('partials/_sidebar.php') ?>
+<input type="hidden" value="2" id="checkFileName">
+<!-- End of Sidebar -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="shortcut icon" href="./images/logo.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../css/oranbyte-google-translator.css">
-    <script src="../js/oranbyte-google-translator.js"></script>
-</head>
+<!-- Main Content -->
+<div class="content">
+    <!-- Navbar -->
+    <?php include("partials/_navbar.php"); ?>
+    <!-- End of Navbar -->
 
-<body>
-    <header>
-        <div class="navbar">
-            <a href="index.php">
-                <span class="material-icons-sharp">home</span>
-                <h3>Home</h3>
-            </a>
-            <a href="timetable.php" class="active" onclick="timeTableAll()">
-                <span class="material-icons-sharp">today</span>
-                <h3>Time Table</h3>
-            </a>
-            <a href="exam.php">
-                <span class="material-icons-sharp">grid_view</span>
-                <h3>Examination</h3>
-            </a>
-            <a href="workspace.php">
-                <span class="material-icons-sharp">description</span>
-                <h3>Workspace</h3>
-            </a>
-            <a href="password.php">
-                <span class="material-icons-sharp">password</span>
-                <h3>Change Password</h3>
-            </a>
-            <a href="logout.php">
-                <span class="material-icons-sharp">logout</span>
-                <h3>Logout</h3>
-            </a>
-        </div>
-        <div id="profile-btn" style="display: none;">
-            <span class="material-icons-sharp">person</span>
-        </div>
-        <div class="theme-toggler">
-            <span class="material-icons-sharp active">light_mode</span>
-            <span class="material-icons-sharp">dark_mode</span>
-        </div>
-
-    </header>
-
-    <main style="margin: 0;">
-        <div class="timetable active" id="timetable">
-            <div>
-                <span id="prevDay">&lt;</span>
-                <h2>Today's Timetable</h2>
-                <span id="nextDay">&gt;</span>
+    <main>
+        <div class="header">
+            <div class="left">
+                <h1>Time Table</h1>
+                <ul class="breadcrumb">
+                    <li><a>Weekly Schedule</a></li>
+                </ul>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Subject</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+        </div>
+
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bx-calendar-event'></i>
+                    <h3 id="current_day_display">Today's Schedule</h3>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-light" id="prevDay"><i class='bx bx-chevron-left'></i></button>
+                        <button class="btn btn-sm btn-light" id="nextDay"><i class='bx bx-chevron-right'></i></button>
+                    </div>
+                </div>
+                <table id="timetable_table">
+                    <thead>
+                        <tr>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by timeTable.js -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
+</div>
 
-</body>
-
+<?php include('partials/_footer.php'); ?>
 <script src="timeTable.js"></script>
 <script src="app.js"></script>
-
-</html>

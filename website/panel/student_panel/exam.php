@@ -1,292 +1,238 @@
-<?php include("../assets/noSessionRedirect.php"); ?>
+<?php include('partials/_header.php') ?>
 
-<?php include("./verifyRoleRedirect.php");
-$id = $_SESSION['uid'];
-// error_reporting(1);
-?>
+<!-- Sidebar -->
+<?php include('partials/_sidebar.php') ?>
+<input type="hidden" value="3" id="checkFileName">
+<!-- End of Sidebar -->
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="shortcut icon" href="../images/1.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    </script>
-    <link rel="stylesheet" href="../css/oranbyte-google-translator.css">
-    <script src="../js/oranbyte-google-translator.js"></script>
-
-    <style>
-        body {
-            overflow: hidden;
-        }
-
-        header {
-            position: relative;
-        }
-
-        .cursor-pointer {
-            cursor: pointer;
-        }
-
-
-        .exam {
-            display: flex;
-            align-items: center;
-            /* justify-content: center; */
-            flex-direction: column;
-            height: 80vh;
-            width: 80%;
-            margin: auto;
-        }
-
-        #gfg {
-            background-image: url('search.svg');
-            /* Add a search icon to input */
-            background-position: 5px 2px;
-            /* Position the search icon */
-            background-repeat: no-repeat;
-            /* Do not repeat the icon image */
-            width: 90%;
-            /* Full-width */
-            font-size: 16px;
-            /* Increase font-size */
-            padding: 12px 20px 12px 40px;
-            /* Add some padding */
-            border: 1px solid #ddd;
-            /* Add a grey border */
-            margin-bottom: 12px;
-            /* Add some space below the input */
-            border-radius: 40px;
-            position: relative;
-        }
-
-        @media only screen and (max-width: 768px) {
-            #gfg {
-                width: 100%;
-                margin: 0%;
-            }
-        }
-
-        .subjective-result-btn {
-            padding: 5px 15px;
-            background-color: #c9eff6;
-            cursor: pointer;
-        }
-
-        .dark-theme .subjective-result-btn {
-            color: black;
-        }
-
-        .exam {
-            height: fit-content;
-        }
-
-        .vertical-elements {
-            display: flex;
-            flex-direction: column;
-        }
-
-        table {
-            margin-bottom: 3rem;
-        }
-
-
-        .hide {
-            display: none !important;
-        }
-
-
-        body {
-            -ms-overflow-style: none;
-            /* Internet Explorer 10+ */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        body::-webkit-scrollbar {
-            display: none;
-            /* Safari and Chrome */
-        }
-    </style>
-</head>
-
-<body style="overflow-y: scroll;">
-    <header>
-        <div class="navbar">
-            <a href="index.php">
-                <span class="material-icons-sharp">home</span>
-                <h3>Home</h3>
-            </a>
-            <a href="timetable.php" onclick="timeTableAll()">
-                <span class="material-icons-sharp">today</span>
-                <h3>Time Table</h3>
-            </a>
-            <a href="exam.php" class="active">
-                <span class="material-icons-sharp">grid_view</span>
-                <h3>Examination</h3>
-            </a>
-            <a href="workspace.php">
-                <span class="material-icons-sharp">description</span>
-                <h3>Workspace</h3>
-            </a>
-            <a href="password.php">
-                <span class="material-icons-sharp">password</span>
-                <h3>Change Password</h3>
-            </a>
-            <a href="logout.php">
-                <span class="material-icons-sharp">logout</span>
-                <h3>Logout</h3>
-            </a>
-        </div>
-        <div id="profile-btn" style="display: none;">
-            <span class="material-icons-sharp">person</span>
-        </div>
-        <div class="theme-toggler">
-            <span class="material-icons-sharp active">light_mode</span>
-            <span class="material-icons-sharp">dark_mode</span>
-        </div>
-    </header>
+<!-- Main Content -->
+<div class="content">
+    <!-- Navbar -->
+    <?php include("partials/_navbar.php"); ?>
+    <!-- End of Navbar -->
 
     <main>
-        <div class="exam timetable">
-            <h2>Exam Result </h2>
-            <h2><?php echo "<a href='progress.php'>Progress Report</a>"; ?></h2>
+        <div class="header">
+            <div class="left">
+                <h1>Examination</h1>
+                <ul class="breadcrumb">
+                    <li><a>Exam Results & Progress</a></li>
+                </ul>
+            </div>
+        </div>
 
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bxs-graduation'></i>
+                    <h3>Exam Results</h3>
+                </div>
+                <div class="d-flex mb-3">
+                    <input id="gfg" class="form-control" type="text"
+                        placeholder="Search for Title, Date, Subjects or Grade..." style="max-width: 400px;">
+                </div>
+                <table id="allResultList">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Subject</th>
+                            <th>Title</th>
+                            <th>Obtain Marks</th>
+                            <th>Total Marks</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="geeks">
+                        <?php
+                        $id = $_SESSION['uid'];
+                        $query2 = "SELECT `exam_id`, MAX(`s_no`) as latest FROM `marks` WHERE `student_id` = ? GROUP BY `exam_id` ORDER BY latest DESC LIMIT 50";
+                        $stmt2 = $conn->prepare($query2);
+                        $stmt2->bind_param("s", $id);
+                        $stmt2->execute();
+                        $result2 = $stmt2->get_result();
 
-            <table class="allResultTable" id="allResultList">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Subject</th>
-                        <th>Title</th>
-                        <th>Obtain Marks</th>
-                        <th>Total Marks</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <input id="gfg" class="marks-table-search-box" type="text"
-                    placeholder="Search for Title ,Date ,Subjects or Grade">
-                <tbody id="geeks">
-                    <?php
+                        if ($result2->num_rows > 0) {
+                            while ($row2 = $result2->fetch_assoc()) {
+                                $examId = $row2['exam_id'];
+                                $query3 = "SELECT * FROM `exams` WHERE `exam_id` = ?";
+                                $stmt3 = $conn->prepare($query3);
+                                $stmt3->bind_param("s", $examId);
+                                $stmt3->execute();
+                                $result3 = $stmt3->get_result();
+                                $row3 = $result3->fetch_assoc();
 
-                    $query2 = "SELECT DISTINCT(`exam_id`) FROM `marks` WHERE `student_id` = ? ORDER BY `s_no`  DESC LIMIT 50";
-                    $stmt2 = $conn->prepare($query2);
-                    $stmt2->bind_param("s", $id);
-                    $stmt2->execute();
-                    $result2 = $stmt2->get_result();
+                                $formattedDate = date("d-m-Y", strtotime($row3['timestamp']));
 
-                    if ($result2->num_rows > 0) {
-                        while ($row2 = $result2->fetch_assoc()) {
-                            $examId = $row2['exam_id'];
+                                if ($row3['subject'] == "ALL") {
+                                    $sql = "SELECT * FROM `marks` WHERE `exam_id` = ? AND `student_id` = ?";
+                                    $stmt4 = $conn->prepare($sql);
+                                    $stmt4->bind_param("ss", $row3['exam_id'], $id);
+                                    $stmt4->execute();
+                                    $marksResult = $stmt4->get_result();
 
-                            $query3 = "SELECT * FROM `exams` WHERE `exam_id` = ?";
-                            $stmt3 = $conn->prepare($query3);
-                            $stmt3->bind_param("s", $examId);
-                            $stmt3->execute();
-                            $result3 = $stmt3->get_result();
-                            $row3 = $result3->fetch_assoc();
-
-                            $dateDB = $row3['timestamp'];
-                            $formattedDate = date("d-m-Y", strtotime($dateDB));
-
-                            $status = "";
-
-                            if ($row3['subject'] == "ALL") {
-                                $sql = "SELECT * FROM `marks` WHERE `exam_id` = ? AND `student_id` = ?";
-                                $stmt4 = $conn->prepare($sql);
-                                $stmt4->bind_param("ss", $row3['exam_id'], $id);
-                                $stmt4->execute();
-                                $marksResult = $stmt4->get_result();
-
-                                $totalGainMarks = 0;
-                                $subjectCount = 0;
-                                $isFail = false;
-                                while ($tempRow = $marksResult->fetch_assoc()) {
-                                    $totalGainMarks += (int) $tempRow['marks'];
-                                    $subjectCount++;
-
-                                    if ((int) $tempRow['marks'] < (int) $row3['passing_marks']) {
-                                        $isFail = true;
+                                    $totalGainMarks = 0;
+                                    $subjectCount = 0;
+                                    $isFail = false;
+                                    while ($tempRow = $marksResult->fetch_assoc()) {
+                                        $totalGainMarks += (int) $tempRow['marks'];
+                                        $subjectCount++;
+                                        if ((int) $tempRow['marks'] < (int) $row3['passing_marks'])
+                                            $isFail = true;
                                     }
+                                    $status = $isFail ? "Fail" : "Pass";
+                                    echo "<tr>
+                                            <td>$formattedDate</td>
+                                            <td><a class='text-primary' style='cursor:pointer;' onClick='handleShowAllSubjectMarks(`" . $row3['exam_id'] . "`)'>" . $row3['subject'] . "</a></td>
+                                            <td>" . $row3['exam_title'] . "</td>
+                                            <td>$totalGainMarks</td>
+                                            <td>" . ($subjectCount * $row3['total_marks']) . "</td>
+                                            <td>$status</td>
+                                        </tr>";
+                                } else {
+                                    $sql = "SELECT * FROM `marks` WHERE `exam_id` = ? AND `student_id` = ? AND `subject`=? LIMIT 1";
+                                    $stmt4 = $conn->prepare($sql);
+                                    $stmt4->bind_param("sss", $row3['exam_id'], $id, $row3['subject']);
+                                    $stmt4->execute();
+                                    $marksResult = $stmt4->get_result();
+                                    $marksResultRow = $marksResult->fetch_assoc();
+                                    $mark = $marksResultRow['marks'] ?? 0;
+
+                                    $status = ((int) $mark >= (int) $row3['passing_marks']) ? "Pass" : "Fail";
+                                    echo "<tr>
+                                            <td>$formattedDate</td> 
+                                            <td>" . $row3['subject'] . "</td>
+                                            <td>" . $row3['exam_title'] . "</td>
+                                            <td>$mark</td>
+                                            <td>" . $row3['total_marks'] . "</td>
+                                            <td>$status</td>
+                                        </tr>";
                                 }
-
-                                $status = $isFail ? "<td style='color:red;text-align:center;'>Fail</td>" : "<td style='color:green;text-align:center;'>Pass</td>";
-
-                                echo " <td>$formattedDate</td>
-                                        <td><a class='no-submit subjective-result-btn cursor-pointer' id='hit' onClick='handleShowAllSubjectMarks(`" . $row3['exam_id'] . "`)'>" . $row3['subject'] . "</a></td>
-                                        <td>" . $row3['exam_title'] . "</td>
-                                        <td style='text-align:center;'>$totalGainMarks</td>
-                                        <td style='text-align:center;'>" . ($subjectCount * $row3['total_marks']) . "</td>
-                                        $status
-                                    </tr>";
-                            } else {
-                                $sql = "SELECT * FROM `marks` WHERE `exam_id` = ? AND `student_id` = ? AND `subject`=? LIMIT 1";
-                                $stmt4 = $conn->prepare($sql);
-                                $stmt4->bind_param("sss", $row3['exam_id'], $id, $row3['subject']);
-                                $stmt4->execute();
-                                $marksResult = $stmt4->get_result();
-                                $marksResultRow = $marksResult->fetch_assoc();
-                                $mark = $marksResultRow['marks'];
-
-                                $status = ((int) $mark >= (int) $row3['passing_marks']) ? "<td style='color:green;text-align:center;'>Pass</td>" : "<td style='color:red;text-align:center;'>Fail</td>";
-
-                                echo "
-                                    <td>$formattedDate</td> 
-                                    <td>" . $row3['subject'] . "</td>
-                                    <td>" . $row3['exam_title'] . "</td>
-                                    <td style='text-align:center;'>$mark</td>
-                                    <td style='text-align:center;'>" . $row3['total_marks'] . "</td>
-                                    $status
-                                </tr>";
+                                $stmt3->close();
+                                if (isset($stmt4))
+                                    $stmt4->close();
                             }
-
-                            $stmt3->close();
-                            if (isset($stmt4)) {
-                                $stmt4->close();
-                            }
+                        } else {
+                            echo '<tr><td colspan="6" class="text-center">No Data found</td></tr>';
                         }
-                    } else {
-                        echo '<td colspan="6" style="text-align:center;padding-top: 3rem;">No Data</td>';
-                    }
-
-                    $stmt2->close();
-
-                    ?>
-                </tbody>
-            </table>
-
-            <div class="vertical-elements" id="subjectiveResultTable">
-
+                        $stmt2->close();
+                        ?>
+                    </tbody>
+                </table>
             </div>
 
-            <script>
-                $(document).ready(function () {
-                    $("#gfg").on("keyup", function () {
-                        var value = $(this).val().toLowerCase();
-                        $("#geeks tr").filter(function () {
-                            $(this).toggle($(this).text()
-                                .toLowerCase().indexOf(value) > -1)
-                        });
-                    });
-                });
-            </script>
+        </div>
 
+        <style>
+            .badge-pass {
+                background-color: #d1e7dd;
+                color: #0f5132;
+                border: 1px solid #badbcc;
+                padding: 5px 12px;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
+            .badge-fail {
+                background-color: #f8d7da;
+                color: #842029;
+                border: 1px solid #f5c2c7;
+                padding: 5px 12px;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
+            #subjectiveResultTable .orders {
+                border-radius: 15px;
+                box-shadow: var(--shadow-md);
+                border: 1px solid rgba(0,0,0,0.05);
+                overflow: hidden;
+            }
+            .result-header-custom {
+                background: linear-gradient(45deg, #1d7431, #145a24);
+                color: white !important;
+                padding: 15px 20px !important;
+            }
+            .result-header-custom i, .result-header-custom h3 {
+                color: white !important;
+            }
+        </style>
+
+        <div id="subjectiveResultTable" class="mt-4" style="display: none;">
+            <!-- Detailed marks table will appear here via JS -->
+        </div>
         </div>
     </main>
+</div>
 
+<script>
+    $(document).ready(function () {
+        $("#gfg").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#geeks tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 
-</body>
+    function handleShowAllSubjectMarks(examId) {
+        const resultTable = document.getElementById('subjectiveResultTable');
+        resultTable.style.display = "block";
+        resultTable.innerHTML = `
+            <div class="orders">
+                <div class="header d-flex justify-content-center align-items-center p-5">
+                    <div class="spinner-border text-primary me-2" role="status"></div>
+                    <span class="fw-bold">Fetching Detailed Results...</span>
+                </div>
+            </div>`;
+        
+        fetch('../assets/fetchSubjectiveResults.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'exam_id=' + encodeURIComponent(examId)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                // Update the data to use our custom badges
+                let enhancedData = data.data
+                    .replace(/bg-success-subtle text-success border border-success-subtle/g, 'badge-pass')
+                    .replace(/bg-danger-subtle text-danger border border-danger-subtle/g, 'badge-fail')
+                    .replace(/badge /g, '');
 
+                resultTable.innerHTML = `
+                    <div class="orders animate__animated animate__fadeIn">
+                        <div class="header result-header-custom d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class='bx bxs-pie-chart-alt-2 me-2'></i>
+                                <h3 class="mb-0">Performance Breakdown</h3>
+                            </div>
+                            <button class="btn btn-sm btn-outline-light border-0" onclick="closeDetailedResults()">
+                                <i class='bx bx-x fs-4'></i>
+                            </button>
+                        </div>
+                        ${enhancedData}
+                    </div>`;
+                
+                // Scroll to the results
+                setTimeout(() => {
+                    resultTable.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            } else {
+                resultTable.innerHTML = '<div class="alert alert-danger m-3">' + data.message + '</div>';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            resultTable.innerHTML = '<div class="alert alert-danger m-3">Failed to fetch exam details. Please try again.</div>';
+        });
+    }
+
+    function closeDetailedResults() {
+        document.getElementById('subjectiveResultTable').style.display = "none";
+    }
+</script>
+
+<?php include('partials/_footer.php'); ?>
 <script src="app.js"></script>
-
-</html>

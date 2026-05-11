@@ -599,7 +599,7 @@ document.getElementById("next-page-btn").addEventListener('click', function () {
 });
 // end pagination 
 
-function backToStudentDetail(){
+function backToTeacherDetail(){
     $("#personalInformationModal").modal('hide');
     $("#addTeacherModal").modal('show');
 }

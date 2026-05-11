@@ -27,14 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <td>'.ucfirst(strtolower($row['subject'])) .'</td>
                 <td>
                     <div class="upload-download">
-                        <a href="'.$fileLocation.'" download="'.$fileName.'" class="upload">
-                            <i class="bx bxs-download"></i>
+                        <a href="'.$fileLocation.'" download="'.$fileName.'" class="download">
+                            <i class="bx bxs-download" style="transform: rotate(180deg); display: inline-block;"></i>
                             <span>&nbsp;Download</span>
-                        </a>
-                        <a class="download"  onclick="openEditSllyabusFile('.$row['s_no'].')">
-                            &nbsp;&nbsp;<i class="bx bxs-download"></i>
-                            <span>&nbsp;Upload</span>
-                            &nbsp;&nbsp;
                         </a>
                     </div>
                 </td>

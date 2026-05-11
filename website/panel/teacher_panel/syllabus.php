@@ -131,7 +131,7 @@
 <!-- end of upload syllabus label  when only file is needed-->
 <!-- Sidebar -->
 <?php include('partials/_sidebar.php') ?>
-<input type="hidden" value="6" id="checkFileName">
+<input type="hidden" value="7" id="checkFileName">
 <!-- End of Sidebar -->
 
 

@@ -3,6 +3,6 @@ session_start();
 
 session_unset();
 session_destroy();
-header('Location: ../../anshi.php');
+header('Location: ../../auth/login.php');
 exit();
 ?>

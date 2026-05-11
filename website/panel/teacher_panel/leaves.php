@@ -5,7 +5,7 @@
 
 <!-- Sidebar -->
 <?php include('partials/_sidebar.php') ?>
-<input type="hidden" value="9" id="checkFileName">
+<input type="hidden" value="10" id="checkFileName">
 <!-- End of Sidebar -->
 
 <!-- Main Content -->

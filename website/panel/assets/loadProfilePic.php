@@ -27,30 +27,21 @@ if(isset($_SESSION['uid'])){
 
             if($row2['role'] == 'admin'){
                 $response['status'] = 'success';
-                if($row['image'] == ''){
-                    $path = ".." . DIRECTORY_SEPARATOR . "adminUploads" . DIRECTORY_SEPARATOR . "1701517055user.png";
-                    $path = file_exists($path) ? $path : "../images/user.png";
-                    $response['data'] = '<img src="'.$path.'" >';
-                }else{
-                    $path = ".." . DIRECTORY_SEPARATOR . "adminUploads" . DIRECTORY_SEPARATOR . $row['image'];
-                    $path = file_exists($path) ? $path : "../images/user.png";
-                    $response['data'] = '<img src="'.$path.'" >';
+                $path = ".." . DIRECTORY_SEPARATOR . "adminUploads" . DIRECTORY_SEPARATOR . $row['image'];
+                if(empty($row['image']) || !file_exists($path) || is_dir($path)){
+                    $path = "../images/user.png";
                 }
+                $response['data'] = '<img src="'.$path.'" >';
             }else if($row2['role'] == 'teacher'){
                 $response['status'] = 'success';
-                if($row['image'] == ''){
-                    $path =  ".." . DIRECTORY_SEPARATOR . "teacherUploads" . DIRECTORY_SEPARATOR . "1701517055user.png";
-                    $path = file_exists($path) ? $path : "../images/user.png";
-                    $response['data'] = '<img src="'.$path.'" >';
-                }else{
-                    $path = ".." . DIRECTORY_SEPARATOR . "teacherUploads" . DIRECTORY_SEPARATOR . $row['image'];
-                    $path = file_exists($path) ? $path : "../images/user.png";
-                    $response['data'] = '<img src="'.$path.'" >';
+                $path = ".." . DIRECTORY_SEPARATOR . "teacherUploads" . DIRECTORY_SEPARATOR . $row['image'];
+                if(empty($row['image']) || !file_exists($path) || is_dir($path)){
+                    $path = "../images/user.png";
                 }
+                $response['data'] = '<img src="'.$path.'" >';
             }else{
                 $response['status'] = 'success';
-                $path =  ".." . DIRECTORY_SEPARATOR . "images" . DIRECTORY_SEPARATOR . "user.png";
-                $path = file_exists($path) ? $path : "../images/user.png";
+                $path = "../images/user.png";
                 $response['data'] = '<img src="'.$path.'" >';
             }
         

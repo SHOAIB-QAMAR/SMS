@@ -5,7 +5,7 @@
 
     if(isset($_SESSION['uid'])){
         $id = $_SESSION['uid'];
-        $defaultImage = "1701517055user.png";
+        $defaultImage = "user.png";
 
         $sql = "SELECT `role` FROM `users` WHERE `users`.id = ?";
 

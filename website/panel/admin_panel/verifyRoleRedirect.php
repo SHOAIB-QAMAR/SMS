@@ -16,7 +16,7 @@
 
         }else{
             include('../assets/logout.php');
-            header("Location: ../../anshi.php");
+            header("Location: ../../auth/login.php");
             exit();
         }
 

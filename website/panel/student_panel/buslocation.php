@@ -1,79 +1,64 @@
-<?php
-include('../assets/config.php');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-  <link rel="stylesheet" href="../css/oranbyte-google-translator.css">
-    <script src="../js/oranbyte-google-translator.js"></script>
-	<title>ERP</title>
-</head>
-<body>
-     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">SCHOOL MANAGEMENT</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul> 
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">logout</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-<?php
-$sql = "SELECT * FROM bus_root WHERE bus_id='{$_GET['bus_id']}'";
-$result = mysqli_query($conn, $sql);
+<?php include('partials/_header.php') ?>
 
-if(mysqli_num_rows($result) > 0) {
-    echo "<div class='position border-0 pb-5 shadow'><h3>Bus Stops</h3>";
+<!-- Sidebar -->
+<?php include('partials/_sidebar.php') ?>
+<input type="hidden" value="5" id="checkFileName">
+<!-- End of Sidebar -->
 
-    while($row = mysqli_fetch_assoc($result)) {
-        
-        echo "<div class='d-flex mt-5 mb-1 align-items-center justify-content-center'>
-              <h6 style='width: 150px; text-align: right;'>{$row['arrival_time']}</h6>
-              <img class='mx-3' src='images/bus.png' alt='Bus icon' width='60px'>
-              <h6  style='width: 150px; text-align: left;'>{$row['location']}</h6>
-          </div>"
-          ;
-    }
+<!-- Main Content -->
+<div class="content">
+    <!-- Navbar -->
+    <?php include("partials/_navbar.php"); ?>
+    <!-- End of Navbar -->
 
-    echo "</div>";
-} else {
-    echo "<center>There is no route defined for this bus yet.</center>";
-}
-?>
+    <main>
+        <div class="header">
+            <div class="left">
+                <h1>Bus Route</h1>
+                <ul class="breadcrumb">
+                    <li><a>Transportation & Stops</a></li>
+                </ul>
+            </div>
+            <a href="buspanel.php" class="btn btn-primary shadow-sm">
+                <i class='bx bx-left-arrow-alt'></i> Back to Buses
+            </a>
+        </div>
 
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bx-map-pin'></i>
+                    <h3>Route Schedule</h3>
+                </div>
+                <div class="p-4">
+                    <?php
+                    $bus_id = mysqli_real_escape_string($conn, $_GET['bus_id']);
+                    $sql = "SELECT * FROM bus_root WHERE bus_id='$bus_id' ORDER BY arrival_time ASC";
+                    $result = mysqli_query($conn, $sql);
 
+                    if(mysqli_num_rows($result) > 0) {
+                        echo '<div class="timeline p-3">';
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "<div class='d-flex mb-4 align-items-center'>
+                                    <div class='time fw-bold text-primary me-4' style='min-width: 100px;'>{$row['arrival_time']}</div>
+                                    <div class='icon-wrapper bg-light rounded-circle p-2 border me-3'>
+                                        <i class='bx bxs-bus text-success fs-4'></i>
+                                    </div>
+                                    <div class='location-info'>
+                                        <h6 class='mb-0'>{$row['location']}</h6>
+                                        <small class='text-muted'>Scheduled Stop</small>
+                                    </div>
+                                  </div>";
+                        }
+                        echo '</div>';
+                    } else {
+                        echo "<div class='text-center p-5 text-muted'>There is no route defined for this bus yet.</div>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 
-</body>
-</html>
+<?php include('partials/_footer.php'); ?>
