@@ -1,5 +1,5 @@
 <?php
-include('../../assets/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 $input = file_get_contents("php://input");
 

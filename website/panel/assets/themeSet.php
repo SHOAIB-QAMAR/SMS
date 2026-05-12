@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 session_start();
 
 if(isset($_SESSION['uid'])){

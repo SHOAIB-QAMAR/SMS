@@ -1,4 +1,4 @@
-<?php include("database/db.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/database/db.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 

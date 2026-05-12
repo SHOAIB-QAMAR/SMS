@@ -1,6 +1,6 @@
 <?php
 
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    

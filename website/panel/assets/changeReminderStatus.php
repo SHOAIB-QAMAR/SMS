@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 if (isset($_POST['dbLine'])) {
     $line = (int)$_POST['dbLine'];

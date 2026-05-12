@@ -7,12 +7,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Configuration - Attempting to pull from assets/config.php if available
-// Since config.php has an exit() on failure, we parse it as a string instead of including it
-$server = "localhost";
-$user = "root";
-$password = "";
-$db = "sms"; // Default from latest edit
+// Configuration - Pulling from the central database config
+include_once $_SERVER['DOCUMENT_ROOT'] . "/database/db.php";
+// The variables $host, $user, $password, and $db are now available from db.php
+$server = $host; 
 
 $config_path = __DIR__ . '/assets/config.php';
 if (file_exists($config_path)) {

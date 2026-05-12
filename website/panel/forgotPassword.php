@@ -5,7 +5,7 @@ error_reporting(0);
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    include('assets/config.php');
+    include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
     $response = array();
 
 
@@ -116,9 +116,9 @@ function generateOTP(){
 
 function getEmailObject($reciever, $otp){
     
-    require 'phpmailer/src/Exception.php';
-    require 'phpmailer/src/PHPMailer.php';
-    require 'phpmailer/src/SMTP.php';
+    require $_SERVER['DOCUMENT_ROOT'] . "/panel/phpmailer/src/Exception.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/panel/phpmailer/src/PHPMailer.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/panel/phpmailer/src/SMTP.php";
     
     
     $title = 'OTP Verification email';

@@ -1,5 +1,5 @@
 <?php
- include("../../assets/config.php");
+ include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 // Assuming noticeId is sent via POST method
 $id = $_POST['noticeId'];

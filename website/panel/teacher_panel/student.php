@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_header.php") ?>
 
 <!-- confirm edit alert modal-->
 <div class="modal fade" id="edit-confirmation-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -424,14 +424,14 @@
 <!-- end of Remove student model -->
 
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="2" id="checkFileName">
 <!-- End of Sidebar -->
 
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_navbar.php"); ?>
 
     <!-- End of Navbar -->
 
@@ -574,7 +574,7 @@
                                             <option>pg</option>
                                             <option>lkg</option>
                                             <option>ukg</option> -->
-                                            <?php include('partials/select_classes.php') ?>
+                                            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                         </select>
                                     </div>
                                 </div>
@@ -700,7 +700,7 @@
 
                     <div class="tab-pane" id="feedback" role="tabpanel" aria-labelledby="feedback-tab" tabindex="0">
 
-                        <?php include('partials/student-shared/feedback-tab.php')  ?>
+                        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/student-shared/feedback-tab.php")  ?>
 
                     </div>
 
@@ -718,4 +718,4 @@
 
 
 <script src="../assets/js/student.js"></script>
-<?php include('partials/_footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_footer.php"); ?>

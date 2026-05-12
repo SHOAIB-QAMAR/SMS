@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["msg"])) {
     session_start();
-    include("config.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
     $msg = $_POST["msg"];
     $uid = $_SESSION['uid'];

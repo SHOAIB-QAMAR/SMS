@@ -1,10 +1,10 @@
-<?php include('shared/_header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/shared/_header.php"); ?>
 
 <body>
     <main>
         <div class="big-wrapper light">
 
-            <?php include('shared/_navbar.php'); ?>
+            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/shared/_navbar.php"); ?>
 
             <div class="container mt-5">
 
@@ -99,4 +99,4 @@
 
 
 
-    <?php include('shared/_footer.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/shared/_footer.php"); ?>

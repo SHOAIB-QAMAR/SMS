@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_header.php") ?>
 
     <div class='toast-container position-fixed text-success bottom-0 end-0 p-3'>
         <div id='liveToast' class='toast' role='alert' aria-live='assertive' aria-atomic='true' style="color:black;">
@@ -12,14 +12,14 @@
         </div>
     </div>
     <!-- Sidebar -->
-    <?php include('partials/_sidebar.php') ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_sidebar.php") ?>
     <input type="hidden" value="6" id="checkFileName">
     <!-- End of Sidebar -->
 
     <!-- Main Content -->
     <div class="content">
         <!-- Navbar -->
-        <?php include("partials/_navbar.php"); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_navbar.php"); ?>
 
         <!-- End of Navbar -->
 
@@ -76,7 +76,7 @@
                                                         <option>pg</option>
                                                         <option>lkg</option>
                                                         <option>ukg</option> -->
-                                                        <?php include('partials/select_classes.php') ?>
+                                                        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -243,4 +243,4 @@
 
 
     <script src="../assets/js/timetable.js"></script>
-    <?php include('partials/_footer.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_footer.php"); ?>

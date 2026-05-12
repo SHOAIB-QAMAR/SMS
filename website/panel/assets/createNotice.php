@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 session_start();
 
 $allowedFileSize = 200 * 1024 * 1024;

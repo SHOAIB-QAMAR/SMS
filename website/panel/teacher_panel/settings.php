@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_header.php") ?>
 
 <div class="modal fade" id="edit-confirmation-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -197,14 +197,14 @@
     <!-- end of change password-->
 
     <!-- Sidebar -->
-    <?php include('partials/_sidebar.php') ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_sidebar.php") ?>
     <input type="hidden" value="11" id="checkFileName">
     <!-- End of Sidebar -->
 
     <!-- Main Content -->
     <div class="content">
         <!-- Navbar -->
-        <?php include("partials/_navbar.php"); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_navbar.php"); ?>
 
         <!-- End of Navbar -->
 
@@ -413,4 +413,4 @@
 
 
     <script src="../assets/js/settings.js"></script>
-    <?php include('partials/_footer.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_footer.php"); ?>

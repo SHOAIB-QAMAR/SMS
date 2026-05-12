@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../../assets/config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 // Assuming form is submitted via POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

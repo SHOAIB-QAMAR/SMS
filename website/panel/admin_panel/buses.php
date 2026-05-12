@@ -1,12 +1,12 @@
-<?php include('partials/_header.php') ?>
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_header.php") ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="11" id="checkFileName">
 <!-- End of Sidebar -->
 
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_navbar.php"); ?>
 
     <!-- End of Navbar -->
 
@@ -126,7 +126,7 @@
                                 </h5>
                             </div>
                             
-                            <?php include("partials/bus-shared/bus-root-gui.php"); ?>
+                            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/bus-shared/bus-root-gui.php"); ?>
 
                             <div class="dataNotAvailable" id="No-Bus-selected">
 
@@ -210,4 +210,4 @@
         type: 'HOUR'
     });
 </script>
-<?php include('partials/_footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_footer.php"); ?>

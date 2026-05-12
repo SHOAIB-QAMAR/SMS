@@ -1,6 +1,6 @@
 <?php
     error_reporting(0);
-    include('../assets/config.php');
+    include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
     if(isset($_SESSION['uid'])){
 
         $userId = $_SESSION['uid'];
@@ -15,7 +15,7 @@
         if($row['role'] == 'student'){
 
         }else{
-            include('../assets/logout.php');
+            include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/logout.php");
             header("Location: ../auth/login.php");
             exit();
         }

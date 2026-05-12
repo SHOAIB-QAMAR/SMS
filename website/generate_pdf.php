@@ -1,6 +1,6 @@
 <?php
-require 'vendor/autoload.php';
-include("database/db.php");
+require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
+include($_SERVER['DOCUMENT_ROOT'] . "/database/db.php");
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

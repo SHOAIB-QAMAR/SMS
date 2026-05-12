@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_header.php") ?>
 <?php
 // PHP Upload Logic
 if (isset($_POST['upload'])) {
@@ -27,12 +27,12 @@ if (isset($_POST['upload'])) {
 ?>
 
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_sidebar.php") ?>
 <!-- End of Sidebar -->
 
 <!-- Main Content -->
 <div class="content">
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_navbar.php"); ?>
 
     <main>
         <div class="header">
@@ -64,7 +64,7 @@ if (isset($_POST['upload'])) {
                             <label class="form-label fw-bold">Target Class</label>
                             <select name="class" class="form-select" required>
                                 <option value="" disabled selected>Choose class...</option>
-                                <?php include('partials/select_classes.php') ?>
+                                <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/select_classes.php") ?>
                             </select>
                         </div>
 
@@ -85,4 +85,4 @@ if (isset($_POST['upload'])) {
     </main>
 </div>
 
-<?php include("partials/_footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_footer.php"); ?>

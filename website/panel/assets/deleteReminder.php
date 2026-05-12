@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('config.php');
+    include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
     if(isset($_POST['dbLine'])){
         $sr_no = $_POST['dbLine'];

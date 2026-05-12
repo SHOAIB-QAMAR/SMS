@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_header.php") ?>
 
 <!-- confirm edit alert modal-->
 <div class="modal fade" id="edit-confirmation-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -101,7 +101,7 @@
                                     <option value="pg">pg</option>
                                     <option value="lkg">lkg</option>
                                     <option value="ukg">ukg</option> -->
-                                        <?php include('partials/select_classes.php') ?>
+                                        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/select_classes.php") ?>
                                     </select>
                                     <div class="invalid-feedback">
                                         required!
@@ -115,7 +115,7 @@
                                         <option value="B">B</option>
                                         <option value="C">C</option> -->
                                         <option value="null">Not Applicable</option>
-                                        <?php include('partials/selelct_section.php') ?>
+                                        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/selelct_section.php") ?>
                                     </select>
                                     <div class="invalid-feedback">
                                         required!
@@ -397,14 +397,14 @@
 <!-- end of Remove student model -->
 
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="2" id="checkFileName">
 <!-- End of Sidebar -->
 
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_navbar.php"); ?>
 
     <!-- End of Navbar -->
 
@@ -604,7 +604,7 @@
                     </div>
 
                     <div class="tab-pane" id="leave-tab" role="tabpanel" aria-labelledby="leave-tab" tabindex="0">
-                        <?php include('partials/teacher-shared/teachers-leave-tab.php') ?>
+                        <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/teacher-shared/teachers-leave-tab.php") ?>
                     </div>
 
 
@@ -623,4 +623,4 @@
 
 <script src="../assets/js/teacher.js"></script>
 <script src="../assets/js/teacher-leave-on-admin.js"></script>
-<?php include('partials/_footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_footer.php"); ?>

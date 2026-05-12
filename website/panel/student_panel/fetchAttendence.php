@@ -2,7 +2,7 @@
 
 <?php
 error_reporting(0);
-include('../assets/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
      $response="";
      session_start();
        if($_SERVER['REQUEST_METHOD']=="POST"){

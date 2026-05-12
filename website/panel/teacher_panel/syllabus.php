@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_header.php") ?>
 
 <!-- upload syllabus label-->
 <div class="modal" style="z-index: 2000;" id="upload-syllabus" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -34,7 +34,7 @@
                                     <option>pg</option>
                                     <option>lkg</option>
                                     <option>ukg</option> -->
-                                    <?php include('partials/select_classes.php') ?>
+                                    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                 </select>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
 </div>
 <!-- end of upload syllabus label  when only file is needed-->
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="7" id="checkFileName">
 <!-- End of Sidebar -->
 
@@ -139,7 +139,7 @@
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_navbar.php"); ?>
 
     <!-- End of Navbar -->
 
@@ -194,7 +194,7 @@
                                             <option>pg</option>
                                             <option>lkg</option>
                                             <option>ukg</option> -->
-                                            <?php include('partials/select_classes.php') ?>
+                                            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                         </select>
                                     </div>
                                 </div>
@@ -269,4 +269,4 @@
 </div>
 
 <script src="../assets/js/sllyabus.js"></script>
-<?php include('partials/_footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_footer.php"); ?>

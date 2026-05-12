@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_header.php") ?>
 
 <!-- confirm edit alert modal-->
 <div class="modal fade" id="edit-confirmation-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -72,7 +72,7 @@
                                 <option>lkg</option>
                                 <option>ukg</option>
                             </select> -->
-                            <?php include('partials/select_classes.php') ?>
+                            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                             <div class="invalid-feedback">
                                 Please select class.
                             </div>
@@ -141,7 +141,7 @@
 </div>
 <!-- end of edit uploaded notes-->
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="3" id="checkFileName">
 <!-- End of Sidebar -->
 
@@ -150,7 +150,7 @@
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_navbar.php"); ?>
 
     <!-- End of Navbar -->
 
@@ -205,7 +205,7 @@
                                             <option>pg</option>
                                             <option>lkg</option>
                                             <option>ukg</option> -->
-                                            <?php include('partials/select_classes.php') ?>
+                                            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                         </select>
                                     </div>
                                 </div>
@@ -289,4 +289,4 @@
 
 
 <script src="../assets/js/subjects.js"></script>
-<?php include('partials/_footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_footer.php"); ?>

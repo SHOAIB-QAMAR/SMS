@@ -1,7 +1,7 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_header.php") ?>
 <?php
 // PHP Excel Import Logic
-require '../../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 if (isset($_POST['upload'])) {
@@ -56,12 +56,12 @@ if (isset($_POST['upload'])) {
 ?>
 
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_sidebar.php") ?>
 <!-- End of Sidebar -->
 
 <!-- Main Content -->
 <div class="content">
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_navbar.php"); ?>
 
     <main>
         <div class="header">
@@ -111,4 +111,4 @@ if (isset($_POST['upload'])) {
     </main>
 </div>
 
-<?php include("partials/_footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_footer.php"); ?>

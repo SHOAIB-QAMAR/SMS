@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../assets/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 // Security Check
 if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'owner') {

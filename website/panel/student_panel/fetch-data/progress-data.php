@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-include('../../assets/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 $data = file_get_contents("php://input");
 $input = json_decode($data,true);

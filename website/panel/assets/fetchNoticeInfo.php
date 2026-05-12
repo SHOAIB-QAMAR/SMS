@@ -1,6 +1,6 @@
 <?php
 
-include('config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 if (isset($_POST['noticeId'])) {
     $id = $_POST['noticeId'];

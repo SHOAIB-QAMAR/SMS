@@ -1,7 +1,7 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_header.php") ?>
 
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="1" id="checkFileName">
 <!-- End of Sidebar -->
 
@@ -39,7 +39,7 @@
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_navbar.php"); ?>
     <!-- End of Navbar -->
 
     <main>
@@ -103,19 +103,23 @@
                     <!-- Banner Upload -->
                     <div class="col-md-6 mb-3">
                         <div class="card p-3 shadow-sm border-0 bg-light">
-                            <h6 class="fw-bold mb-3"><i class='bx bx-image-add me-2 text-primary'></i>Update Homepage Banner</h6>
+                            <h6 class="fw-bold mb-3"><i class='bx bx-image-add me-2 text-primary'></i>Update Homepage
+                                Banner</h6>
                             <form action="website_action.php" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <input type="file" name="banner_pic" class="form-control form-control-sm" accept="image/*" required>
+                                    <input type="file" name="banner_pic" class="form-control form-control-sm"
+                                        accept="image/*" required>
                                 </div>
-                                <button type="submit" name="banner_upload" class="btn btn-primary btn-sm w-100">Upload Banner</button>
+                                <button type="submit" name="banner_upload" class="btn btn-primary btn-sm w-100">Upload
+                                    Banner</button>
                             </form>
                         </div>
                     </div>
                     <!-- Gallery Upload -->
                     <div class="col-md-6 mb-3">
                         <div class="card p-3 shadow-sm border-0 bg-light">
-                            <h6 class="fw-bold mb-3"><i class='bx bx-images me-2 text-success'></i>Update Gallery Slots</h6>
+                            <h6 class="fw-bold mb-3"><i class='bx bx-images me-2 text-success'></i>Update Gallery Slots
+                            </h6>
                             <form action="website_action.php" method="POST" enctype="multipart/form-data">
                                 <div class="row g-2">
                                     <div class="col-4">
@@ -130,10 +134,12 @@
                                         </select>
                                     </div>
                                     <div class="col-8">
-                                        <input type="file" name="gallery_pic" class="form-control form-control-sm" accept="image/*" required>
+                                        <input type="file" name="gallery_pic" class="form-control form-control-sm"
+                                            accept="image/*" required>
                                     </div>
                                 </div>
-                                <button type="submit" name="gallery_upload" class="btn btn-success btn-sm w-100 mt-3">Upload to Gallery</button>
+                                <button type="submit" name="gallery_upload"
+                                    class="btn btn-success btn-sm w-100 mt-3">Upload to Gallery</button>
                             </form>
                         </div>
                     </div>
@@ -192,4 +198,4 @@
 </div>
 
 <script src="../assets/js/dashboard.js"></script>
-<?php include("partials/_footer.php");
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/_footer.php");

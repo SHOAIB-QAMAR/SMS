@@ -1,5 +1,5 @@
 <?php
-include("../../assets/config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 $search = $_POST['search'];
 $sql = "select * from students where fname like '%$search%' or lname like '%$search%' or id like '%$search%'";
 $result = mysqli_query($conn, $sql);

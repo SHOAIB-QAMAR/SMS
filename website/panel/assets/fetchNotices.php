@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 $response = array();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

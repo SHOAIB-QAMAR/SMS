@@ -1,5 +1,5 @@
 <?php
-include('../assets/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 session_start();
 
 $response = array();

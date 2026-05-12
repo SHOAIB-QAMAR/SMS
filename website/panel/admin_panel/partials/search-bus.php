@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/admin_panel/partials/config.php");
 
 // Sanitize user input to prevent SQL injection
 $input = mysqli_real_escape_string($conn, $_POST["val"]);

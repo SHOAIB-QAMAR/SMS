@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/panel/assets/config.php");
 
 $response = array();
 

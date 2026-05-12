@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../database/db.php"); // This now points to 'sms' database
+include($_SERVER['DOCUMENT_ROOT'] . "/database/db.php"); // This now points to 'sms' database
 
 // Using 'username' from login.php form as 'email' for the Dashboard table
 $email = mysqli_real_escape_string($data, $_POST['username']);

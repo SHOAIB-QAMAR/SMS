@@ -1,4 +1,4 @@
-<?php include('partials/_header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_header.php") ?>
 
 <!-- start offcanvas marks table  -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="markSheerOffcanvas" aria-labelledby="offcanvasRightLabel">
@@ -95,7 +95,7 @@
                                     <option>pg</option>
                                     <option>lkg</option>
                                     <option>ukg</option> -->
-                                    <?php include('partials/select_classes.php') ?>
+                                    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                 </select>
                                 <div class="invalid-feedback invalid-exam-class">
                                     Please choose a exam class.
@@ -167,14 +167,14 @@
 
 
 <!-- Sidebar -->
-<?php include('partials/_sidebar.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_sidebar.php") ?>
 <input type="hidden" value="9" id="checkFileName">
 <!-- End of Sidebar -->
 
 <!-- Main Content -->
 <div class="content">
     <!-- Navbar -->
-    <?php include("partials/_navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_navbar.php"); ?>
 
     <!-- End of Navbar -->
 
@@ -343,7 +343,7 @@
                                             <option>pg</option>
                                             <option>lkg</option>
                                             <option>ukg</option> -->
-                                            <?php include('partials/select_classes.php') ?>
+                                            <?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/select_classes.php") ?>
                                         </select>
                                     </div>
                                 </div>
@@ -443,4 +443,4 @@
 
 
 <script src="../assets/js/marks.js"></script>
-<?php include('partials/_footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/panel/teacher_panel/partials/_footer.php"); ?>
